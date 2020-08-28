@@ -1,0 +1,410 @@
+set cut_paste_input [stack 0]
+version 11.3 v2
+push $cut_paste_input
+Group {
+ name AZ_Channel_Mixer
+ selected true
+ xpos 39
+ ypos -414
+ addUserKnob {20 User}
+ addUserKnob {26 PlatePrep l "PLATE PREP" T "- For initial saturation & luminance adjustments."}
+ addUserKnob {41 saturation l Saturation T Saturation16.saturation}
+ addUserKnob {41 mode l "luminance math" T Saturation16.mode}
+ addUserKnob {20 Grade l "Grade Node" n 1}
+ Grade 0
+ addUserKnob {41 blackpoint T Grade1.blackpoint}
+ addUserKnob {41 black l lift T Grade1.black}
+ addUserKnob {41 whitepoint T Grade1.whitepoint}
+ addUserKnob {41 white l gain T Grade1.white}
+ addUserKnob {41 gamma T Grade1.gamma}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {41 which l "Channel Combination" T Switch1.which}
+ addUserKnob {26 Space l "" +STARTLINE}
+ addUserKnob {20 ListofCombos l "List of Combinations" n 1}
+ ListofCombos 0
+ addUserKnob {26 list l "" +STARTLINE T "0 - Red (RRR)\n1 - Green (GGG)\n2- Blue (BBB)\n3 - Cyan (Expression)\n4 - Yellow (Expression)\n5 - Magenta (Expression)\n6 - RRG\n7 - RRB\n8 - RGR\n9- RBR\n10 - RGG\n11 - RBB\n12 - RBG\n13 - GGB \n14 - GGR\n15 - BGR \n16 - BGB \n17 - BGG\n18 - GRB\n19 - BRB (Be Right Back)\n20 - GRG\n21 - GBG\n22 - GRR (I'm a tiger!)\n23 - GBB \n24 - BRR (It's chilly in here)\n25 - BGG \n26 - BBG \n27 - BBR"}
+ addUserKnob {20 endGroup_1 l endGroup n -1}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {26 OutputSat l "OUTPUT SATURATION" T "- For final adjustments after the channel combination has been selected."}
+ addUserKnob {41 saturation_1 l Saturation T Saturation1.saturation}
+ addUserKnob {41 mode_1 l "luminance math" T Saturation1.mode}
+ addUserKnob {20 gradenode2 l "Grade Node 2" n 1}
+ gradenode2 0
+ addUserKnob {41 blackpoint_1 l blackpoint T Grade2.blackpoint}
+ addUserKnob {41 black_1 l lift T Grade2.black}
+ addUserKnob {41 whitepoint_1 l whitepoint T Grade2.whitepoint}
+ addUserKnob {41 white_1 l gain T Grade2.white}
+ addUserKnob {41 gamma_1 l gamma T Grade2.gamma}
+ addUserKnob {20 endGroup_2 l endGroup n -1}
+ addUserKnob {20 Sharpen t "For Tracking" n 1}
+ Sharpen 0
+ addUserKnob {41 amount T Sharpen1.amount}
+ addUserKnob {41 size T Sharpen1.size}
+ addUserKnob {41 filter T Sharpen1.filter}
+ addUserKnob {41 quality l "" -STARTLINE T Sharpen1.quality}
+ addUserKnob {20 endGroup_3 l endGroup n -1}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {41 from0 l "Copy into Alpha" T Copy1.from0}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {41 disable_1 l "Disable Invert RGBA" T Invert1.disable}
+ addUserKnob {26 Title l "AZ Channel Mixer" T "\n\nFor getting better tracks, keys, & more options for desaturation.\n\nSuggestions or questions? \nEmail: andrew@andrewzeller.com"}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 509
+  ypos 128
+ }
+ Saturation {
+  name Saturation16
+  label INPUT
+  xpos 509
+  ypos 167
+ }
+ Grade {
+  name Grade1
+  xpos 509
+  ypos 215
+ }
+ Dot {
+  name Dot5
+  xpos 543
+  ypos 261
+ }
+set Nb01f1020 [stack 0]
+ Dot {
+  name Dot1
+  xpos 1020
+  ypos 261
+ }
+set Nb01f55d0 [stack 0]
+ Dot {
+  name Dot2
+  xpos 1329
+  ypos 261
+ }
+set Nb01f9cd0 [stack 0]
+ Dot {
+  name Dot4
+  xpos 2111
+  ypos 261
+ }
+set Nb01fe680 [stack 0]
+ Shuffle {
+  red blue
+  green blue
+  blue red
+  name Shuffle25
+  label BBR
+  xpos 2273
+  ypos 467
+ }
+push $Nb01fe680
+ Shuffle {
+  red blue
+  green blue
+  blue green
+  name Shuffle24
+  label BBG
+  xpos 2132
+  ypos 463
+ }
+push $Nb01fe680
+ Shuffle {
+  red blue
+  blue green
+  name Shuffle23
+  label BGG
+  xpos 1989
+  ypos 461
+ }
+push $Nb01fe680
+ Shuffle {
+  red blue
+  green red
+  blue red
+  name Shuffle22
+  label BRR
+  xpos 1853
+  ypos 463
+ }
+push $Nb01f9cd0
+ Shuffle {
+  red green
+  green blue
+  name Shuffle7
+  label GBB
+  xpos 1614
+  ypos 464
+ }
+push $Nb01f9cd0
+ Shuffle {
+  red green
+  green red
+  blue red
+  name Shuffle20
+  label GRR
+  xpos 1499
+  ypos 467
+ }
+push $Nb01f9cd0
+ Shuffle {
+  red green
+  green blue
+  blue green
+  name Shuffle21
+  label GBG
+  xpos 1393
+  ypos 467
+ }
+push $Nb01f9cd0
+ Shuffle {
+  red green
+  green red
+  blue green
+  name Shuffle6
+  label GRG
+  xpos 1295
+  ypos 469
+ }
+push $Nb01f55d0
+ Shuffle {
+  red blue
+  green red
+  name Shuffle19
+  label BRB
+  xpos 1027
+  ypos 468
+ }
+push $Nb01f55d0
+ Shuffle {
+  red green
+  green red
+  name Shuffle18
+  label GRB
+  xpos 920
+  ypos 466
+ }
+push $Nb01f1020
+ Shuffle {
+  red blue
+  blue green
+  name Shuffle17
+  label BGG
+  xpos 724
+  ypos 468
+ }
+push $Nb01f1020
+ Shuffle {
+  red blue
+  name Shuffle9
+  label BGB
+  xpos 613
+  ypos 465
+ }
+push $Nb01f1020
+ Shuffle {
+  red blue
+  blue red
+  name Shuffle11
+  label BGR
+  xpos 509
+  ypos 464
+ }
+push $Nb01f1020
+ Shuffle {
+  red green
+  blue red
+  name Shuffle10
+  label GGR
+  xpos 403
+  ypos 468
+ }
+push $Nb01f1020
+ Shuffle {
+  red green
+  name Shuffle8
+  label GGB
+  xpos 304
+  ypos 468
+ }
+push $Nb01f1020
+ Dot {
+  name Dot3
+  xpos -158
+  ypos 261
+ }
+set Naf1f8300 [stack 0]
+ Shuffle {
+  green blue
+  blue green
+  name Shuffle16
+  label RBG
+  xpos 177
+  ypos 469
+ }
+push $Naf1f8300
+ Shuffle {
+  green blue
+  name Shuffle13
+  label RBB
+  xpos 61
+  ypos 474
+ }
+push $Naf1f8300
+ Shuffle {
+  blue green
+  name Shuffle5
+  label RGG
+  xpos -65
+  ypos 476
+ }
+push $Naf1f8300
+ Shuffle {
+  green blue
+  blue red
+  name Shuffle15
+  label RBR
+  xpos -182
+  ypos 479
+ }
+push $Naf1f8300
+ Shuffle {
+  blue red
+  name Shuffle4
+  label RGR
+  xpos -301
+  ypos 475
+ }
+push $Naf1f8300
+ Shuffle {
+  green red
+  name Shuffle14
+  label RRB
+  xpos -438
+  ypos 476
+ }
+push $Naf1f8300
+ Shuffle {
+  green red
+  blue green
+  name Shuffle12
+  label RRG
+  xpos -586
+  ypos 468
+ }
+push $Naf1f8300
+ Dot {
+  name Dot7
+  xpos -997
+  ypos 261
+ }
+set Nd1bf0760 [stack 0]
+ Expression {
+  channel3 rgba
+  expr3 min(r,b)-r*g*b
+  name Expression3
+  label MAGENTA
+  xpos -773
+  ypos 458
+ }
+push $Nd1bf0760
+ Expression {
+  channel3 rgba
+  expr3 min(r,g)-r*g*b
+  name Expression2
+  label YELLOW
+  xpos -881
+  ypos 454
+ }
+push $Nd1bf0760
+ Expression {
+  channel3 rgba
+  expr3 min(g,b)-r*g*b
+  name Expression1
+  label CYAN
+  xpos -1004
+  ypos 453
+ }
+push $Nd1bf0760
+ Shuffle {
+  red blue
+  green blue
+  name Shuffle2
+  label BBB
+  xpos -1116
+  ypos 453
+ }
+push $Nd1bf0760
+ Shuffle {
+  red green
+  blue green
+  name Shuffle3
+  label GGG
+  xpos -1217
+  ypos 454
+ }
+push $Nd1bf0760
+ Shuffle {
+  green red
+  blue red
+  name Shuffle1
+  label RRR
+  xpos -1312
+  ypos 454
+ }
+ Switch {
+  inputs 28
+  name Switch1
+  xpos 509
+  ypos 775
+ }
+ Grade {
+  name Grade2
+  xpos 509
+  ypos 863
+ }
+ Saturation {
+  saturation 0
+  name Saturation1
+  label OUTPUT
+  xpos 509
+  ypos 896
+ }
+ Sharpen {
+  channels rgb
+  amount 0
+  name Sharpen1
+  xpos 509
+  ypos 956
+ }
+set Na84f2660 [stack 0]
+push $Na84f2660
+ Copy {
+  inputs 2
+  from0 rgba.red
+  to0 rgba.alpha
+  name Copy1
+  xpos 509
+  ypos 1008
+ }
+ Invert {
+  channels rgba
+  name Invert1
+  xpos 509
+  ypos 1072
+  disable true
+ }
+ Output {
+  name Output1
+  xpos 509
+  ypos 1130
+ }
+ Viewer {
+  frame_range 1-100
+  name Viewer1
+  xpos 284
+  ypos 1061
+ }
+end_group
